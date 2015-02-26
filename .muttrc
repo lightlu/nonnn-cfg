@@ -1,8 +1,9 @@
 set editor="~/scripts/apps-editor.sh"
+
 color normal default default
 
-set mbox="~/Mail/inbox"
-set spoolfile="~/Mail/inbox"
+set mbox="~/Mail/mutt_inbox"
+set spoolfile="~/Mail/mutt_inbox"
 set postponed="~/Mail/postponed"
 set record="~/Mail/sent"
 
