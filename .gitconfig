@@ -1,5 +1,6 @@
 [core]
-	editor = ~/scripts/apps-editor.sh
+	#	editor = ~/scripts/apps-editor.sh
+	editor = vim
 [user]
 	name = Sherman Hsu
 	email = sherman_hsu@5vtechnologies.com
