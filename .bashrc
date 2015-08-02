@@ -149,4 +149,6 @@ export TERM=xterm-256color
 # 2014/09/26 sherman hsu
 # Set Env $EDITOR
 export EDITOR='emacs -nw'
+
+# Go Version Management
 [[ -s "/home/nonnn/.gvm/scripts/gvm" ]] && source "/home/nonnn/.gvm/scripts/gvm"
