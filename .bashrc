@@ -130,10 +130,10 @@ fi
 
 # 2011/10/15 sherman hsu
 # Envoirnment variable for ICE
-export T32SYS=/opt/t32
-export T32TMP=/tmp
-export T32ID=T32
-export PATH=$PATH:/opt/t32/bin/pc_linux64
+# export T32SYS=/opt/t32
+# export T32TMP=/tmp
+# export T32ID=T32
+# export PATH=$PATH:/opt/t32/bin/pc_linux64
 
 ## Scripts Path ##
 PATH=$PATH:$HOME/scripts
