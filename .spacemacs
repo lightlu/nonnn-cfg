@@ -36,6 +36,7 @@ values."
      ;; syntax-checking
      ;; version-control
      c-c++
+     html
      cscope
      shell
      ;; themes-megapack
