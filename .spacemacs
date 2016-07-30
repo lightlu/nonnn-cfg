@@ -274,6 +274,11 @@ you should place your code here."
   (define-key evil-motion-state-map "\C-e" 'evil-end-of-line)
   (define-key evil-replace-state-map "\C-e" 'evil-end-of-line)
   (define-key evil-evilified-state-map "\C-e" 'evil-end-of-line)
+  ;; Move between window
+  (global-set-key (kbd "C-x <up>")    'evil-window-up)
+  (global-set-key (kbd "C-x <down>")  'evil-window-down)
+  (global-set-key (kbd "C-x <left>")  'evil-window-left)
+  (global-set-key (kbd "C-x <right>") 'evil-window-right)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
