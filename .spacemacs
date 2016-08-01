@@ -269,17 +269,17 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (xterm-mouse-mode -1)
-  ;; Remap C-e to goto end-of-line
-  (define-key evil-normal-state-map "\C-e" 'evil-end-of-line)
-  (define-key evil-visual-state-map "\C-e" 'evil-end-of-line)
-  (define-key evil-motion-state-map "\C-e" 'evil-end-of-line)
-  (define-key evil-replace-state-map "\C-e" 'evil-end-of-line)
-  (define-key evil-evilified-state-map "\C-e" 'evil-end-of-line)
+  (bind-key "\C-e" 'evil-end-of-line evil-normal-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-visual-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-motion-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-replace-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-evilified-state-map)
   ;; Move between window
-  (global-set-key (kbd "C-x <up>")    'evil-window-up)
-  (global-set-key (kbd "C-x <down>")  'evil-window-down)
-  (global-set-key (kbd "C-x <left>")  'evil-window-left)
-  (global-set-key (kbd "C-x <right>") 'evil-window-right)
+  (bind-keys*
+   ("C-x <up>"    . evil-window-up)
+   ("C-x <down>"  . evil-window-down)
+   ("C-x <left>"  . evil-window-left)
+   ("C-x <right>" . evil-window-right))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
