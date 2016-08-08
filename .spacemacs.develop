@@ -302,6 +302,8 @@ you should place your code here."
    ("C-x <down>"  . evil-window-down)
    ("C-x <left>"  . evil-window-left)
    ("C-x <right>" . evil-window-right))
+  ;; Search
+  (bind-key (kbd "C-o") 'isearch-occur isearch-mode-map)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
