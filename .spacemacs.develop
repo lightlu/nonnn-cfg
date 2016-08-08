@@ -296,6 +296,12 @@ you should place your code here."
   (bind-key "\C-e" 'evil-end-of-line evil-motion-state-map)
   (bind-key "\C-e" 'evil-end-of-line evil-replace-state-map)
   (bind-key "\C-e" 'evil-end-of-line evil-evilified-state-map)
+  ;; Move between window
+  (bind-keys*
+   ("C-x <up>"    . evil-window-up)
+   ("C-x <down>"  . evil-window-down)
+   ("C-x <left>"  . evil-window-left)
+   ("C-x <right>" . evil-window-right))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
