@@ -290,6 +290,12 @@ you should place your code here."
   (xterm-mouse-mode -1)
   ;; Powerline
   (setq powerline-default-separator 'nil)
+  ;; Evil
+  (bind-key "\C-e" 'evil-end-of-line evil-normal-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-visual-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-motion-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-replace-state-map)
+  (bind-key "\C-e" 'evil-end-of-line evil-evilified-state-map)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
