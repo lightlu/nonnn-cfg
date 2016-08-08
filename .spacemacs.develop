@@ -51,6 +51,8 @@ values."
      ;; version-control
      c-c++
      cscope
+     ;; themes-megapack
+     theming
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -277,6 +279,19 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  ;; Theme
+  (setq-default
+   theming-modifications
+   ;; White vertical line
+   '((spacemacs-dark (vertical-border :foreground "#ffffff"))))
+  (custom-set-variables
+   '(spacemacs-theme-comment-bg nil)
+   '(spacemacs-theme-custom-colors
+     '(
+       ;; White normal text
+       (base . "#ffffff")
+       ;; Black Background
+       (bg1  . "#000000"))))
   )
 
 (defun dotspacemacs/user-config ()
