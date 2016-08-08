@@ -292,6 +292,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
        (base . "#ffffff")
        ;; Black Background
        (bg1  . "#000000"))))
+  ;; C-C++
+  (setq-default c-default-style "linux")
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (c-add-style
+              "linux-tabs-only"
+              '("linux" (c-lineup-gcc-asm-reg)))
+              (setq indent-tabs-mode t)
+              (setq tab-width 8)))
   )
 
 (defun dotspacemacs/user-config ()
