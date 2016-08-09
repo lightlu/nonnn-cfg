@@ -37,7 +37,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
      ;; markdown
@@ -51,6 +51,7 @@ values."
      ;; version-control
      c-c++
      cscope
+     semantic
      ;; themes-megapack
      theming
      )
