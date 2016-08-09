@@ -43,9 +43,9 @@ values."
      git
      markdown
      ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
@@ -303,6 +303,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
               '("linux" (c-lineup-gcc-asm-reg)))
               (setq indent-tabs-mode t)
               (setq tab-width 8)))
+  ;; Shell/Term
+  (custom-set-variables
+   '(term-buffer-maximum-size 10240))
   )
 
 (defun dotspacemacs/user-config ()
