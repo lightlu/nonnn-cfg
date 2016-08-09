@@ -52,6 +52,7 @@ values."
      c-c++
      cscope
      semantic
+     html
      ;; themes-megapack
      theming
      )
