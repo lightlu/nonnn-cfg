@@ -306,6 +306,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Shell/Term
   (custom-set-variables
    '(term-buffer-maximum-size 10240))
+  ;; Helm
+  ;; Scrolling line by line
+  (custom-set-variables '(helm-scroll-amount 1))
   )
 
 (defun dotspacemacs/user-config ()
