@@ -343,6 +343,9 @@ you should place your code here."
   (bind-key "M-<down>" 'move-text-down evil-hybrid-state-map)
   (bind-key "M-<down>" 'move-text-down evil-normal-state-map)
   (bind-key "M-<down>" 'move-text-dwon evil-visual-state-map)
+  (bind-key "M-SPC"    'er/expand-region evil-hybrid-state-map)
+  (bind-key "M-SPC"    'er/expand-region evil-normal-state-map)
+  (bind-key "M-SPC"    'er/expand-region evil-visual-state-map)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
