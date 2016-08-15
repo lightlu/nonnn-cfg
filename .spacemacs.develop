@@ -336,6 +336,13 @@ you should place your code here."
    ("C-x <right>" . evil-window-right))
   ;; Search
   (bind-key (kbd "C-o") 'isearch-occur isearch-mode-map)
+  ;; spacemacs-editing
+  (bind-key "M-<up>"   'move-text-up evil-hybrid-state-map)
+  (bind-key "M-<up>"   'move-text-up evil-normal-state-map)
+  (bind-key "M-<up>"   'move-text-up evil-visual-state-map)
+  (bind-key "M-<down>" 'move-text-down evil-hybrid-state-map)
+  (bind-key "M-<down>" 'move-text-down evil-normal-state-map)
+  (bind-key "M-<down>" 'move-text-dwon evil-visual-state-map)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
