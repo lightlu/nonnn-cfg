@@ -274,6 +274,13 @@ values."
    dotspacemacs-whitespace-cleanup nil
    ))
 
+(defun dotspacemacs/add-hook-cscope-mode-hook (mode)
+  (let* ((mode-hook (intern (format "%s-hook" mode))))
+    (if (boundp 'mode-hook)
+        (progn
+          (message "Add helm-cscope-mode in hook %s" mode-hook)
+          (add-hook mode-hook #'helm-cscope-mode)))))
+
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
@@ -309,6 +316,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Helm
   ;; Scrolling line by line
   (custom-set-variables '(helm-scroll-amount 1))
+  ;; cscope
+  (advice-add 'spacemacs/setup-helm-cscope :after #'dotspacemacs/add-hook-cscope-mode-hook)
   )
 
 (defun dotspacemacs/user-config ()
@@ -346,6 +355,22 @@ you should place your code here."
   (bind-key "M-SPC"    'er/expand-region evil-hybrid-state-map)
   (bind-key "M-SPC"    'er/expand-region evil-normal-state-map)
   (bind-key "M-SPC"    'er/expand-region evil-visual-state-map)
+  ;; cscope
+  (eval-after-load "helm-cscope"
+    '(progn
+       (bind-key "C-c sc" 'helm-cscope-find-calling-this-funtcion helm-cscope-mode-map)
+       (bind-key "C-c sc" 'helm-cscope-find-calling-this-funtcion helm-cscope-mode-map)
+       (bind-key "C-c sC" 'helm-cscope-find-called-function helm-cscope-mode-map)
+       (bind-key "C-c sd" 'helm-cscope-find-global-definition helm-cscope-mode-map)
+       (bind-key "C-c sg" 'helm-cscope-find-global-definition helm-cscope-mode-map)
+       (bind-key "C-c se" 'helm-cscope-find-egrep-pattern helm-cscope-mode-map)
+       (bind-key "C-c sf" 'helm-cscope-find-this-file helm-cscope-mode-map)
+       (bind-key "C-c si" 'helm-cscope-find-files-including-file helm-cscope-mode-map)
+       (bind-key "C-c ss" 'helm-cscope-find-this-symbol helm-cscope-mode-map)
+       (bind-key "C-c st" 'helm-cscope-find-this-text-string helm-cscope-mode-map)
+       (bind-key "C-c s=" 'helm-cscope-find-assignments-to-this-symbol helm-cscope-mode-map)
+       (bind-key "C-c su" 'helm-cscope-pop-mark helm-cscope-mode-map)
+       (bind-key "C-c sI" 'cscope-index-files helm-cscope-mode-map)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
