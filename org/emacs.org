@@ -1,0 +1,994 @@
+* Install Emacs
+** Obtaining / Downloading Emacs
+   1. GNU Emacs can be downloaded from [[http://ftp.gnu.org/pub/gnu/emacs/][emacs]]
+** Prepare relative package to install
+   #+BEGIN_SRC sh
+   apt-get install build-essential texinfo libx11-dev libncurses5-dev libgtk2.0-dev libtiff-dev libjpeg-dev libgif-dev libpng-dev libxpm-dev
+   #+END_SRC
+** Starting install Emacs
+   1. Configure Emacs
+      #+BEGIN_SRC sh
+      cd EMACS-SOURCE-DIR/
+      make distclean
+      # ./configure --prefix="The path that you want to install"
+      ./configure --prefix="/usr/local/stow/emacs-2x.x"
+      #+END_SRC
+      1) If `configure' didn't find some (optional) image support libraries,
+	 such as Xpm, jpeg, etc., and you want to use them, refer to the
+	 subsection "Image support libraries" in INSTALL file of Emacs.
+
+      2) Emacs default installing path is usr/local If you want Emacs to
+	 install in one folder, make a folder emacs23 in ~/
+	 ./configure --prefix=~/emacs23
+      3) Configure without X window
+	 #+BEGIN_SRC sh
+	 ./configure --with-x-toolkit=no --with-x=no --with-xpm=no --without-imagemagick --without-jpeg \
+   		--without-gif --without-tiff --without-png --without-rsvg
+         #+END_SRC
+   2. Make and install
+      #+BEGIN_SRC sh
+      make
+      # If `make' succeeds
+      #+END_SRC
+   3. Do "make clean" to conserve disk space
+* Shortcut key
+** Add / Delete prefix in every line
+
+| C-SPEC Mark region then C-x r t                       | Insert string rectangle ex. // , # |
+| Put cursor behind string we want to kill then C-x r k | Kill string rectangle ex. // , #   |
+
+** ag search (purcell)
+   | M-? | ag search pattern |
+** Align (align-regex)
+   | M-x align                                            | Align with space                 |
+   | C-SPC (Mark) C-u M-x align-regex                     | Align pattern matched regex      |
+   | Example:                                             |                                  |
+   | Sherman 124,456                                      |                                  |
+   | Peter 555,555                                        |                                  |
+   | Derek 888,888                                        |                                  |
+   |                                                      | C-SPC (Mark) C-u M-x align-regex |
+   | Complex align using regexp:\([A-Za-z]+\)             |                                  |
+   | or ,\(\)                                             | using ,(comma) to align regexp   |
+   | Parenthesis group to modify (justify if negative): 1 | Align to left                    |
+   | Amount of spacing (or column if negative): 1         | Add space (tab) if shorten       |
+   | Repeat throughout line? (y or n) y                   | Repeat patter in line            |
+** Bookmark
+
+| C-x r m             | Set  Bookmark             |
+| C-x r b             | Jump to a Bookmark        |
+| C-x r l             | list Bookmark             |
+| M-x bookmark-delete | Delete a bookmark by name |
+
+** Change file line endings between DOS, MAC, UNIX
+
+| C-x RET f | Call set-buffer-file-coding-system, give a value of mac , dos, unix |
+
+** Checking and Correcting Spelling
+
+| M-x flyspell-mode                         | Enable Flyspell mode, which highlights all misspelled words                            |
+| M-$                                       | Check and correct spelling of the word at point (ispell-word)                          |
+| M-TAB                                     | Complete the word before point based on the spelling dictionary (ispell-complete-word) |
+| M-x ispell                                | Spell-check the active region or the current buffer                                    |
+| M-x ispell-change-dictionary RET dict RET | Restart the Ispell process, using dict as the dictionary                               |
+| M-x ispell-kill-ispell                    | Kill the Ispell subprocess                                                             |
+| Refer to below Mode->flyspell mode        |                                                                                        |
+
+** Check the font setting
+   | M-x describe-font | Show font settings |
+** Converting Case
+
+| M-l | Convert following word to lower case (downcase-word)               |
+| M-u | Convert following word to upper case (upcase-word)                 |
+| M-c | Capitalize the following word (first word upcase and rest lowcase) |
+
+** Converting Encoding system (simplified Chinese can not be displayed normally)
+
+| M-x revert-buffer-with-encoding-system gb18030 | Convert encoding to gb18030 |
+
+** Deleting white space
+
+| M-\                        | To join two words (or any non-space characters) together by deleting all whitespace between them |
+| M-SPEC                     | To make sure two words are separated by just one space                                           |
+| delete-trailing-whitespace | Delete all white space from whole file                                                           |
+
+** ECB
+
+| C-c . l c | Change layout (My usually use : left9) |
+
+** Enlarge font size in xEmacs
+   | Hold "Shift" + click "mouse left" | Pop menu and choose "Increase Buffer text size" |
+** Help hotkeys
+   | C-h k | describe-key         | Display documentation of the function invoked by KEY.      |
+   | C-h f | describe-function    | Display documentation of the function invoked by FUNCTION. |
+   | C-h v | describe-variable    | Display documentation of the function invoked by VARIABLE  |
+   | C-h K | find-function-on-key | Find the function that KEY invokes.                        |
+** Hex mode for viewing bin file
+| M-x hexl-find-file   | visit a file with hex mode              |
+| M-x hexl-find-buffer | visit a buffer with hex mode            |
+| M-x hexl-mode        | view current buffer with hex mode       |
+| C-c C-c              | Leave hex mode                          |
+| C-M-x                | Insert a byte with a code typed in hex  |
+| C-h a hexl-<RET>     | For detail                              |
+
+** Highlight words
+| M-s h r | M-x highlight-regexp <REGEXP>          | highlight <REGEXP> word                            |
+| M-s w r | M-x unhighlight-regexp                 | unhighlight <REGEXP> word                          |
+| M-s h p | M-x highlight-phrase <REGEXP>          | highlight phrase <REGEXP> word                     |
+| M-s h l | M-x highlight-lines-matching-regexp    | Highlights all lines matching a regular expression |
+| M-s h u | M-x unhighlight-regexp                 | Deletes the highlighter under point                |
+| M-s h w | M-x hi-lock-write-interactive-patterns | Inserts a list of Hi-Lock patterns into the buffer |
+| M-s h f | M-x hi-lock-find-patterns              | Searches for Hi-Lock patterns in the buffer to use |
+
+** Indentation
+| C-M-\     | Indentation region                                                                                   |
+| C-u <TAB> | Shift an entire parenthetical grouping rigidly sideways so that its first line is properly indented. |
+|           | Press this hot key at left parent of group Ex. {, (                                                  |
+
+** Insert/delete comment
+
+| M-;               | Comment or uncomment a line or a rigon |
+| M-RET, C-M-j, M-j | indent-new-comment-line                |
+
+** Insert Macro backslash
+
+| C-c C-\ | c-backslash-region | inserts and aligns or deletes end-of-line backslashes in the current region |
+
+** Jump back to past position
+   | C-x C-SPC | pop-global-mark |
+** Kmacro
+| C-x C-k TAB | kmacro-insert-counter ARG | Insert macro counter, then increment it by ARG.   |
+| C-x C-k C-c | kmacro-set-counter        | Set `kmacro-counter' to ARG or prompt if missing. |
+
+** Mark whole buffer
+   | C-x h | mark-whole-buffer | Put point at beginning and mark at end of buffer.|
+** Miscellaneous Buffer Operations
+
+| C-x C-q | read-only-mode | Toggle read-only status of buffer |
+
+** Move forword/backward over #if
+| C-c C-p                          | c-backward-conditional | Move back across a preprocessor conditional                        |
+| C-c C-n                          | c-forward-conditional  | Move forward across a preprocessor conditional                     |
+| C-c C-u                          | c-up-conditional       | Move back to the containing preprocessor conditional               |
+| M-x c-down-conditional-with-else |                        | Forward into the next preprocessor conditional, including `#else'  |
+| M-x c-up-conditional-with-else   |                        | Back to the containing preprocessor conditional, including `#else' |
+
+** Move point to the first non-whitespace character on this line.
+| M-m | back-to-indentation | Move point to the first non-whitespace character on this line. |
+
+** List all acitve minor mode
+   | C-h m | M-x describe-mode | show all acitve minor mode |
+** Navigate functions, variable etc. in a file
+   | M-x imenu | interactive navigate functions, variable etc. |
+** Term mode
+
+| M-N | term-send-backward-kill-word |
+| M-b | term-send-backward-word      |
+
+** Open the same file in different window
+
+| C-x 4 c | clone-indirect-buffer-other-window | Like `clone-indirect-buffer' but display in another window. |
+
+** Record keyboard macro
+
+| C-x ( | Start record macro |
+| C-x ) | Stop  record macro |
+| C-x e | exeuate macro      |
+
+** Mark a pointer(location) to register
+   | C-x r SPC <a-z> | pointer-to-register        | Save position of point in register      |
+   | C-x r j         | jump-to-register           | Jump to the position saved in register  |
+   | C-x r s <a-z>   | copy-to-register           | Copy region into register r             |
+   | C-x r i         | insert-register            | Insert text from register               |
+** Repeat a command
+
+| C-u N command | repeat command N times | ex. C-u 10 C-d delete 20 characters       |
+| C-z           | repeat a command       | C-z z z z iterate repeat the prev command |
+
+** Replace
+*** Replace in file/buffer
+    | M-%      | query-replace        | interactive find ＆ replace                                |
+    | C-M-%    | query-replace-regexp | query-replace-regexp                                       |
+    |          |                      |                                                            |
+    | Commands |                      |                                                            |
+    | '!'      |                      | to replace all remaining occurrences without asking again. |
+*** Replace in directory
+    | dired or find-dired                | To list files in dir.                 |
+    | m or % m                           | Mark file or mark file by regex       |
+    | Q or dired-do-query-replace-regexp | y to replace, n to skip, C-g to abort |
+
+** Spell checker
+
+| M-x flyspell-mode   | Turn on spell checker |
+| M-x flyspell-buffer | Turn on spell checker |
+
+** Save As
+   |C-x C-w| Save buffer as a new file, like mv |
+** Search
+*** Search symbol
+    | M-s . | isearch-forward-symbol-at-point |
+*** Search with case sensitivity
+    | C-s <string> M-c | Search <string> with case sensitivity |
+*** Edit current search string
+    | C-s M-e | Edit current search string |
+*** List matched search
+    | M-x list-matching-lines | List matched search           |
+    | M-x occur               | List matched search           |
+    | C-s C-w C-o             | As List marked matched search |
+*** Search copied string
+    | C-s M-y | Yank string in kill ring to search buffer |
+    | C-s M-Y | Search in kill ring                       |
+** Surround parenthesis
+*** evil
+| S<textobj>   | Add surrounding in visual-state |
+| ys<textobj>  | Add surrounding in normal-state |
+| cs<old><new> | Change surrounding              |
+| ds<textobj>  | Delete surrounding              |
+| C-o          | evil-jump-backward, pop mark    |
+*** emacs
+| Mark M-( | Add () around the marked text |
+** Undo and redo
+| C-/ | undo and redo in normal mode |
+| C-? | redo in undo-tree-mode       |
+** Word completion
+| M - / | word completion |
+** Force use TAB key in C mode
+| C-q TAB | Force use TAB key in C mode |
+** Reload .emacs or other lisp file
+| M-x load-file | To load an Emacs Lisp file | 
+  
+** Install package from ELPA (Emacs Lisp Package Archive)
+| M-x package-list-packages | List all available or installed packages |
+| i                         | mark as install                          |
+| d                         | mark as remove                           |
+| x                         | execute the mark                         |
+** Rectangle mark
+   | C-x Space | rectangle-mark-mode |
+* Modes
+** Artist mode
+
+| M-x artist-mode | Open artist mode                   |
+| C-c C-c         | M-x artist-mode-off                |
+| C-c C-a C-o     | M-x artist-select-operation        |
+| RET             | M-x artist-key-set-point           |
+| C-n             | M-x artist-next-line               |
+| C-p             | M-x artist-previous-line           |
+| C-c C-a l       | M-x artist-select-op-line          |
+| C-c C-a L       | M-x artist-select-op-straight-line |
+| C-c C-a r       | M-x artist-select-op-rectangle     |
+| C-c C-a C-k     | M-x artist-cut-op-rectangle        |
+| C-c C-a M-w     | M-x artist-cut-op-cut-rectangle    |
+| C-c C-a C-y     | M-x artist-cut-op-paste            |
+| C-c C-a v       | M-x artist-select-op-vaporize-line |
+| C-c C-a T       | M-x artist-select-op-text-see-thru |
+
+** C mode
+| C-c C-\ | Insert or align `\' characters at the ends of the lines of the region |
+
+** Calc mode
+
+| Descrption | abbr. | cmmand     | example      | exp. command               |
+|------------+-------+------------+--------------+----------------------------|
+| log10      | H L   | calc-log10 | log(10, 100) | 100 RET 10 RET H RET L RET |
+| log        | B     | calc-log   | log(2,1024)  | 1024 RET 2 RET B RET       |
+| ln         | L     | calc-ln    |              |                            |
+| exp        | E     | calc-exp   |              |                            |
+
+** Calculator mode
+| D | Change to decimal |
+| H | Change to Heximal |
+| B | Change to Binary  |
+** Compnay mode
+*** Debug
+**** Clang
+***** clang failed with error 1: /usr/bin/clang -cc1 -fsyntax-only ...
+      1. Write a simple main.c
+      2. Copy the whole line of clang compile command and execute as
+         #+BEGIN_SRC sh
+         cat main.c | /usr/bin/clang -cc1 -fsyntax-only -code-completion-macros -x c -code-completion-at -:22:13 -
+         #+END_SRC
+      3. The error will present on screen
+         1) Header file not found
+            - Ex. <stdin>:1:10: fatal error: 'stdio.h' file not found
+         2) Solution add header file paths "-I/usr/include" etc. in variable "company-clang-arguments"
+            - Automatic add include header file paths. Please refer to =~/.emacs.d/lisp/init-company.el=
+** Doxymacs mode
+*** Downloaded in "~/TCC/Soft/emacs/doxymacs-1.8.0.tar.gz"
+*** Hot keys
+    | C-c d f | insert a Doxygen comment for the next function.                    |
+    | C-c d i | insert a Doxygen comment for the current file.                     |
+    | C-c d ; | insert a Doxygen comment for a member variable on the current line |
+    | C-c d s | insert a Doxygen comment for signal line                           |
+    | C-c d m | insert a Doxygen comment for multiple lines                        |
+** Hide ifdef mode
+
+| M-x hide-ifdef mode | Hide ifdef mode enable |
+| C-c @ u             | M-x hide-ifdef-undef   |
+| C-c @ h             | M-x hide-ifdefs        |
+| C-c @ s             | M-x show-ifdefs        |
+| C-c @ d             | M-x hide-ifdef-define  |
+
+** Hide show mode
+   | M-x hs-minor-mode | Hide show mode enable          |
+   | C-c @ C-h         | M-x hs-hide-block              |
+   | C-c @ C-s         | M-x hs-show-block              |
+   | C-c @ C-c         | M-x hs-toggle-hiding(and show) |
+   | C-c @ Esc C-s     | Show all                       |
+   | C-c @ Esc C-h     | Hide all                       |
+
+** Hide show org like mode
+   - Disable yasnippet M-x yas/minor-mode
+   | M-x hs-org/hideshow | Hide show org likely mode enable |
+   | TAB                 | Hide/Show block                  |
+   | S-TAB               | Hide/Show all                    |
+
+** Flyspell mode
+*** Flyspell mode using aspell
+    1. Checking aspell
+       $ aspell -v
+       @(#) International Ispell Version 3.1.20 (but really Aspell 0.60.6)
+
+    2. Testing aspell
+       $ echo "hello woold" | aspell -a -l en
+       @(#) International Ispell Version 3.1.20 (but really Aspell 0.60.6)
+       *
+       & woold 14 6: wold, world, would, wild, Woolf, wools, Wood, wield, wood, wool, Wald, weld, wooed, wool's
+
+    3. If default language is Chinese, please check as below
+       $ echo "hello woold" | aspell -a
+       Error: No word lists can be found for the language "zh_TW"
+
+    4. If display an error as item 3. , then add "lang en" in /etc/aspell.conf or ~/.aspell.conf
+
+    5. The configuration of aspell can be reviewed with
+       $ aspell config
+
+*** Q: Enabling Flyspell mode gave an error : No word lists can be found for the language zh_TW
+    A: See the "Flyspell mode using aspell" item 4 in above
+** LaTeX mode
+*** Compile and View
+    | C-c | Emacs will automatic select action for you.   |
+    |     | For example: After editing docs.              |
+    |     | First C-c will ask you to compile Tex file    |
+    |     | Second time type C-c will ask you to view PDF |
+    |     |                                               |
+    |     |                                               |
+
+*** Add table of content (ToC). Important!!!
+    | C-c LaTeX C-c LaTex | First execute  |
+
+*** Beamer
+**** beamer template
+- Import text template: org-export-insert-default-template
+- Add Beamer attributes
+  NOTE: BEAMER_FRAME_LEVEL: <n> should the same as OPTIONS H:<n>
+#+begin_src org
+#+startup: beamer
+#+LaTex_CLASS: beamer
+#+LaTex_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 3
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+#+end_src
+- First Level will be section, Second level will be subsection, third level will be frame 
+**** Export beamer
+| C-c C-e l P | Export org to PDF(beamer) |
+** Magit mode
+*** Branch
+    | b b | Checkout to specific branch |
+    | b c | Create branch               |
+*** Blame
+    | b b | Reblame file for view files history |
+*** Cherry and cherry-pick
+    | a | Cherry-pack patch                                 |
+    | A | Cherry-pack commit                                |
+    | y | Show refs. Parse .git for remotes, tags, branches |
+    | Y | Git cherry                                        |
+*** Push
+    | P P | Push the changes |
+
+*** Rebase
+    | r i | interactive rebase |
+*** Stash
+    | z   | Create new stash                    |                                                          |
+    | Z   | Create new stash and maintain state | Leaves current changes in working tree and staging area. |
+    | RET | View stash                          |                                                          |
+    | a   | Apply stash                         |                                                          |
+    | A   | Pop stash                           |                                                          |
+    | k   | Drop stash                          |                                                          |
+** nXML mode
+*** Change child indent
+    - customize-group nxml -> Search child indent
+** Octave mode
+
+   | M-x octave-mode | Enable / Disable octave mode for writing m file          |
+   | M-x run-octave  | Running inferior Octave buffer from within Emacs         |
+   | C-c TAB l       | Send the current line to the inferior Octave process     |
+   | C-c TAB b       | Send the current block to the inferior Octave process    |
+   | C-c TAB f       | Send the current function to the inferior Octave process |
+
+** Org mode
+*** Break line(new line)
+    - Using "\\" to break line
+#+BEGIN_SRC org
+    This is the first line \\
+    This is the second line
+#+END_SRC
+*** Disabling underscore-to-subscript
+    #+BEGIN_SRC org
+    #+OPTIONS: ^:nil
+    #+END_SRC
+    | C-c C-e t | inserts a template containing all the options |
+*** Escape brackets
+    #+BEGIN_SRC org
+    =[escape bracket]=
+    #+END_SRC
+*** Export to tex or pdf
+    | C-c C-e p | Export to pdf |
+    | C-c C-e l | Export to tex |
+*** Foot note
+#+BEGIN_SRC Org mode
+    footnote[1]
+    footnote[fn:note_one]
+
+    [1] simple footnote
+    [fn:note_one] footnote one
+#+END_SRC
+
+*** Hyper link
+**** Link format
+#+BEGIN_SRC org
+    [[link][description]] or [[link]]
+#+END_SRC
+****
+*** Image
+**** Insert an image
+     #+BEGIN_SRC org
+     [[/path/to/image.jpg]]
+     #+END_SRC
+
+**** Scale an image to export to LaTeX
+     - Org mode version < 8.0
+       #+BEGIN_SRC org
+       #+ATTR_LaTeX: width=10cm
+       [[/path/to/image.jpg]]
+       #+END_SRC
+     - Org mode >= 8.0
+       #+BEGIN_SRC org
+       #+ATTR_LaTeX: :width 10cm
+       [[/path/to/image.jpg]]
+       #+END_SRC
+**** Center an image to export to LaTeX
+     - Org mode < 8.0
+       #+BEGIN_SRC org
+       #+ATTR_LaTeX: float
+       [[/path/to/image.jpg]]
+       #+END_SRC
+     - Org mode >= 8.0
+       #+BEGIN_SRC org
+       #+ATTR_LaTeX: :float wrap
+       [[/path/to/image.jpg]]
+       #+END_SRC
+
+*** Input bold and italic fonts
+    Input *bold* or /italic/ fonts are pretty easy in org mode:
+    #+BEGIN_SRC org
+    This is *bold*, /italic/, _underlined_, =code=
+    #+END_SRC
+*** Page break
+    #+BEGIN_SRC org
+    \newpage
+    #+END_SRC
+*** Table
+**** Column and row editing
+
+| Column and row editing |                             |                                                                                              |
+|------------------------+-----------------------------+----------------------------------------------------------------------------------------------|
+| M-S-<up>               | org-table-kill-row          | Kill the current row or horizontal line.                                                     |
+| M-S-<down>             | org-table-insert-row        | Insert a new row above the current row.                                                      |
+| M-<up>                 | org-table-move-row-up       |                                                                                              |
+| M-<down>               | org-table-move-row-down     |                                                                                              |
+| M-S-<left>             | org-table-delete-column     | Kill the current column.                                                                     |
+| M-S-<right>            | org-table-insert-column     | Insert a new column to the left of the cursor position.                                      |
+| M-<left>               | org-table-move-column-left  |                                                                                              |
+| M-<right>              | org-table-move-column-right |                                                                                              |
+| C-c -                  | org-table-insert-hline      | Insert a horizontal line below current row.                                                  |
+| C-c <RET>              | org-table-hline-and-move    | Insert a horizontal line below current row, and move the cursor into the row below that line |
+
+**** Column Group
+
+#+BEGIN_SRC org
+| Column Group |    |    |    |    |    |           |           |           |
+|--------------+----+----+----+----+----+-----------+-----------+-----------|
+| aa           | bb | bb | cc | cc | cc | vert_line | vert_line | vert_line |
+|--------------+----+----+----+----+----+-----------+-----------+-----------|
+| /            | <  | >  | <  |    | >  | <         | <         | <         |
+| a            | b  | b  | c  | c  | c  | vl1       | vl2       | vl3       |
+#+END_SRC
+
+**** Border of table export to LaTeX
+***** Org mode < 8.0
+      #+BEGIN_SRC org
+      #+ATTR_LaTeX: align=|c|c|c|
+      | Table1 |   |   |
+      |--------+---+---|
+      | a      | b | c |
+      |--------+---+---|
+      | d      | e | f |
+      #+END_SRC
+
+***** Org mode >= 8.0
+      #+BEGIN_SRC org
+      #+ATTR_LaTeX: :align |c|c|c|
+      | Table1 |   |   |
+      |--------+---+---|
+      | a      | b | c |
+      |--------+---+---|
+      | d      | e | f |
+      #+END_SRC
+
+**** Formula syntax for Calc
+
+#+BEGIN_SRC org
+| r1/c1(@1/$1) | c2 |        c3 |    c4 sum | c5 sub |
+|--------------+----+-----------+-----------+--------|
+| r2           |  5 |        10 |        15 |     -5 |
+| r3           |  1 |         2 |         3 |     -1 |
+| r4           |  3 |         4 |         7 |     -3 |
+| r5 mean      |  3 | 5.3333333 | 8.3333333 |    -3. |
+#+TBLFM: $4=vsum($2..$3)::@5$2=vmean(@2$2..@4$2)::@5$3=vmean(@2$3..@4$3)::$5=$3-$4
+#+END_SRC
+
+#+BEGIN_SRC org
+| r1/c1(@1/$1) | c2 |        c3 |    c4 c2*10-c3 |
+|--------------+----+-----------+----------------|
+| r2           |  5 |        10 |             40 |
+#+TBLFM: $4=$2*10-$3
+#+END_SRC
+
+| C-c ?   | In a cell, this command will tell you its : line @4, col $5, ref @4$5 or E4, formula: E&=C&-D& |
+| C-c }   | Turn on the reference visualization grid                                                       |
+| C-c {   | Turn on the debugging mode (Perform C-c C-c on #+TBLFM:... line)                               |
+| C-c C-c | Exit the formula editor and store the modified formulas (Issue on the lind #+TBLFM:... )       |
+*** TimeStamp
+    | C-c . | M-x org-time-stamp          | Insert timestamp like <2014-03-18 二>              |
+    | C-c q | M-x org-time-stamp-inactive | Insert an inactive time stamp like [2014-03-18 二] |
+** Python
+*** JEDI
+**** Installation
+     1. Prerequirements: virtualenv
+        #+BEGIN_SRC sh
+        sudo pip install virtualenv
+        #+END_SRC
+     2. Refer lisp/init-jedi.el
+     3. M-x jedi:install-server RET
+*** IPython
+**** Setup
+     #+BEGIN_SRC elisp
+     (require 'python)
+     (setq python-shell-interpreter "ipython")
+     ;; (setq python-shell-interpreter-args "--pylab")
+     #+END_SRC
+**** Keybinding
+     | C-M-x     | python-shell-send-defun  |
+     | C-c C-f   | python-eldoc-at-point    |
+     | C-c C-p   | run python               |
+     | C-c C-f   | python-eldoc-at-point    |
+     | C-c C-r   | python-shell-send-region |
+     | C-c C-s   | python-shell-send-string |
+     | C-c C-t c | python-skeleton-class    |
+     | C-c C-t d | python-skeleton-def      |
+     | C-c C-t f | python-skeleton-for      |
+     | C-c C-t i | python-skeleton-if       |
+     | C-c C-t t | python-skeleton-try      |
+     | C-c C-t w | python-skeleton-while    |
+** GDB mode
+*** Open GDB
+    | M-x gdb              | open gdb                 |
+    | M-x gdb-many-windows | multi-window mode of gdb |
+** serial-term mode
+   | M-x serial-term /port/ /speed/ | Start a terminal-emulator for a serial port                                     |
+   |                                | in a new buffer. port is the name of the                                        |
+   |                                | serial port to connect to. For example, this could be /dev/ttyS0                |
+   |                                | The buffer is in Term mode; see Term Mode, for the cmds. to use in that buffer. |
+** term-mode
+   | C-c C-j | Change to line mode treat buffer as text buffer |
+   | C-c C-k | Change to char mode as normal terminal          |
+** w3m mode
+*** Prepare
+    #+BEGIN_SRC sh
+    apt-get install w3m
+    #+END_SRC
+*** Hot keys
+    | U | Open a URL |
+    |   |            |
+** web mode
+*** Reference
+    http://web-mode.org/
+*** Key Bindings
+    | C-c C-f   | Fold/Unfold element/tag          |
+    | C-c C-s   | Snippet insert                   |
+    | C-c C-e i | element insert                   |
+    | C-c C-e w | element wrapper insert           |
+    | C-c C-e k | element kill                     |
+*** Spacemacs
+   | , . | open web micro state, ? for help |
+   
+* plug-in
+** smex
+   - Smex is a M-x enhancement for Emacs. Built on top of Ido, it provides a
+     convenient interface to your recently and most frequently used commands
+   - Smex is only used for emacs 24.3 or later
+     (Because a bug in emacs 24.2 from "execute-extended-command")
+** yasnippet
+   1. Add yasnippet in .emacs
+      #+BEGIN_EXAMPLE
+      (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
+      (require 'yasnippet)
+      (yas/initialize)
+      (yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
+      #+END_EXAMPLE
+   2. Modify default template
+      For example, to modify "if" snippet
+      Modify =~/.emacs.d/plugins/yasnippet-0.6.1c/snippets/text-mode/cc-mode/if=
+      #+BEGIN_EXAMPLE
+      #name : if (...) { ... }
+      # --
+      if (${1:condition})
+      {
+          $0
+      }
+      #+END_EXAMPLE
+   3. The meaning of syntax
+      1) The #’s are just comments, and the rest of the snippet will be inserted
+	 with the $’s being the location where the TAB goes to, with t going
+	 from $1 to $2 to … to $
+* ~/.emacs deploy
+** Change min-buffer font color
+   (set-face-foreground 'minibuffer-prompt "white")
+* Auto Save
+** Delete Auto Save files
+   + To delete all auto-save files in the current directory, use `#’ in Dired to mark the files, then ‘x’ to delete th
+   + To recursively delete all auto-save files under the current directory, run:
+#+BEGIN_SRC sh
+     find -name "#*#" | xargs rm
+#+END_SRC sh
+     If the file names contain whitespace, it is necessary to use one of:
+#+BEGIN_SRC sh
+     find -name "#*#" -print0 | xargs -0 rm
+     find -name "#*#" -exec rm {} \;
+#+END_SRC sh
+* Lisp
+** Get file name w/ directory from buffer
+   #+BEGIN_SRC elisp
+   Eval: (buffer-file-name)
+   #+END_SRC
+** Get file name w/o directory path
+   #+BEGIN_SRC elisp
+   Eval: (file-name-nondirectory (buffer-file-name))
+   #+END_SRC
+** Get last directory name
+   #+BEGIN_SRC elisp
+   Eval: (file-name-nondirectory (directory-file-name (file-name-directory (buffer-file-name))))
+   #+END_SRC
+* Spacemacs
+** Magic
+*** Auto-completion
+| ~M-/~     | Expand a snippet if text before point is a prefix of a snippet |
+| ~SPC i s~ | List all current yasnippets for inserting                      |
+
+*** C-C++
+| Mark a region of code then ~SPC m r~ | Extract code to new function |
+
+*** HTML
+| ~SPC m .~   | into micro state                                          |
+| ~SPC m r d~ | delete the current element (does not delete the children) |
+| ~SPC m r r~ | rename current element                                    |
+| ~SPC m r w~ | wrap current element                                      |
+
+*** Jump
+    | ~SPC SPC~ | master branch: avy word                             |
+    | ~SPC j j~ | develop branch: avy word                            |
+    | ~SPC j i~ | jump-in-buffer, like tlist list functions in buffer |
+
+*** Projectile
+| ~SPC p f~ | find file                           |
+| ~SPC p p~ | switch project                      |
+| ~SPC p o~ | run =multi-occur=                   |
+| ~SPC p r~ | open a recent file                  |
+| ~SPC p R~ | replace a string                    |
+| ~SPC p t~ | open =NeoTree= in =projectile= root |
+| ~C-c p l~ | find file in directory              |
+
+*** Replace
+**** Highlight symbol and edit (iedit)
+| ~*~       | initiate navigation transient state on current symbol and jump forwards      |
+| ~#~       | initiate navigation transient state on current symbol and jump backwards     |
+| ~SPC s e~ | edit all occurrences of the current symbol(/)                                |
+| ~SPC s h~ | highlight the current symbol and all its occurrence within the current range |
+| ~SPC v e~ | mark a word goto iedit mode                                                  |
+***** Examples
+ -  manual selection of several words then replace: ~v w w SPC s e S "toto" ESC ESC~
+ -  append text to a word on two lines: ~v i w SPC s e J i "toto" ESC ESC~
+ -  substitute symbol /with expand-region/: ~SPC v v e S "toto" ESC ESC~
+ -  replace symbol with yanked (copied) text /with expand region/: ~SPC v e p ESC ESC~
+*** Search
+| ~SPC s S~ | search with the first found tool with default input |
+| ~SPC s B~ | search with the first found tool with default input |
+| ~SPC s F~ | search with the first found tool with default input |
+| ~SPC r y~ | search from kill ring                               |
+| ~SPC r l~ | resume last helm result                             |
+
+*** Semantic
+| ~SPC s j~ | jump-in-buffer, like tlist list functions in buffer  |
+
+*** Syntax check
+| ~SPC e l | display a list of all the errors. RET to move to error |
+
+*** Spacemacs-editing
+| ~SPC v~              | Expand region                             |
+| ~SPC v (repeat v) /~ | Expand region and search in project       |
+| ~SPC v (repeat v) f~ | Expand region and search in file          |
+| ~SPC v (repeat v) b~ | Expand region and search in opened buffer |
+
+** Key bindings
+*** Changes
+****  Magit
+| g -> gr | Refresh         |
+| k -> x  | Discard changes |
+
+*** Auto-completion
+| ~M-/~     | Expand a snippet if text before point is a prefix of a snippet |
+| ~SPC i s~ | List all current yasnippets for inserting                      |
+
+*** Reload =.spacemeacs= file
+    To apply the modifications made in =~/.spacemacs= press ~SPC f e R~. It will
+    re-execute the Spacemacs initialization process.
+*** Useful key bindings
+| Key Binding     | Description                                                              |
+|-----------------+--------------------------------------------------------------------------|
+| ~SPC r l~       | resume the last =helm= buffer                                            |
+| ~F3~            | in a =helm= buffer, convert a =helm= search buffer into a regular buffer |
+| ~SPC s `~       | go back to the previous place reached with =helm-ag=                     |
+| ~SPC s l~       | focus the last converted search buffer                                   |
+| Prefix argument | will ask for file extensions                                             |
+
+*** Dotspacemacs
+| ~SPC f e d~ | open dotspacemacs file            |
+| ~SPC f e R~ | Reload dotspacemacs configuration |
+| ~SPC f e D~ | Diff dotspacemacs and template    |
+
+*** Evil
+**** Surround ~s~
+
+*** File
+| ~SPC f F~ | try to open the file under point ~helm~   |
+| ~SPC f j~ | jump tothe current buffer file in dired   |
+| ~SPC f r~ | open a recent file with ~helm~            |
+| ~SPC f t~ | toggle file tree side bar using ~NeoTree~ |
+
+*** Helm
+|                                | helm is regex                                |
+| ~C-SPC~                        | mark candidates                              |
+| ~C-c C-i~                      | insert marked candidates into current buffer |
+| ~C-c TAB~                      | insert current line                          |
+| ~C-t~                          | Change helm buffer location                  |
+| ~C-M-<up>~, ~M-<prior(PgUp)>~  | Scroll other window up                       |
+| ~C-M-<down>~, ~M-<down(PgDn)>~ | Scroll other window down                     |
+
+*** HTML
+| ~SPC m .~   | into micro state                                          |
+| ~SPC m h p~ | show xpath of the current element                         |
+| ~SPC m r c~ | clone the current element                                 |
+| ~SPC m r d~ | delete the current element (does not delete the children) |
+| ~SPC m r r~ | rename current element                                    |
+| ~SPC m r w~ | wrap current element                                      |
+| ~SPC m z~   | fold/unfold current element                               |
+
+*** Magit
+| ~SPC g s~ | git status |
+
+*** Jump
+| ~SPC SPC~ | master branch: avy word                             |
+| ~SPC j j~ | develop branch: avy word                            |
+| ~SPC j i~ | jump-in-buffer, like tlist list functions in buffer |
+
+*** Projectile
+| ~SPC p d~ | find directory                      |
+| ~SPC p f~ | find file                           |
+| ~SPC p p~ | switch project                      |
+| ~SPC p o~ | run =multi-occur=                   |
+| ~SPC p r~ | open a recent file                  |
+| ~SPC p R~ | replace a string                    |
+| ~SPC p t~ | open =NeoTree= in =projectile= root |
+| ~C-c p l~ | find file in directory              |
+
+*** Search
+**** Highlight symbol and edit (iedit)
+| ~*~       | initiate navigation transient state on current symbol and jump forwards      |
+| ~#~       | initiate navigation transient state on current symbol and jump backwards     |
+| ~SPC s e~ | edit all occurrences of the current symbol(/)                                |
+| ~SPC s h~ | highlight the current symbol and all its occurrence within the current range |
+| ~SPC v e~ | mark a word goto iedit mode                                                  |
+***** Examples
+ -  manual selection of several words then replace: ~v w w SPC s e S "toto" ESC ESC~
+ -  append text to a word on two lines: ~v i w SPC s e J i "toto" ESC ESC~
+ -  substitute symbol /with expand-region/: ~SPC v v e S "toto" ESC ESC~
+ -  replace symbol with yanked (copied) text /with expand region/: ~SPC v e p ESC ESC~
+
+**** Searching in current file
+| Key Binding | Description                                         |
+|-------------+-----------------------------------------------------|
+| ~SPC s s~   | search with the first found tool                    |
+| ~SPC s S~   | search with the first found tool with default input |
+| ~SPC s a a~ | =ag=                                                |
+| ~SPC s a A~ | =ag= with default input                             |
+| ~SPC s g g~ | =grep=                                              |
+| ~SPC s g G~ | =grep= with default input                           |
+
+**** Searching in all open buffers visiting files
+| Key Binding | Description                                         |
+|-------------+-----------------------------------------------------|
+| ~SPC s b~   | search with the first found tool                    |
+| ~SPC s B~   | search with the first found tool with default input |
+| ~SPC s a b~ | =ag=                                                |
+| ~SPC s a B~ | =ag= with default text                              |
+| ~SPC s g b~ | =grep=                                              |
+| ~SPC s g B~ | =grep= with default text                            |
+| ~SPC s k b~ | =ack=                                               |
+| ~SPC s k B~ | =ack= with default text                             |
+| ~SPC s t b~ | =pt=                                                |
+| ~SPC s t B~ | =pt= with default text                              |
+
+**** Searching in files in an arbitrary directory
+| Key Binding | Description                                         |
+|-------------+-----------------------------------------------------|
+| ~SPC s f~   | search with the first found tool                    |
+| ~SPC s F~   | search with the first found tool with default input |
+| ~SPC s a f~ | =ag=                                                |
+| ~SPC s a F~ | =ag= with default text                              |
+| ~SPC s g f~ | =grep=                                              |
+| ~SPC s g F~ | =grep= with default text                            |
+| ~SPC s k f~ | =ack=                                               |
+| ~SPC s k F~ | =ack= with default text                             |
+| ~SPC s t f~ | =pt=                                                |
+| ~SPC s t F~ | =pt= with default text                              |
+
+**** Searching in a project
+| Key Binding           | Description                                         |
+|-----------------------+-----------------------------------------------------|
+| ~SPC /~  or ~SPC s p~ | search with the first found tool                    |
+| ~SPC *~  or ~SPC s P~ | search with the first found tool with default input |
+| ~SPC s a p~           | =ag=                                                |
+| ~SPC s a P~           | =ag= with default text                              |
+| ~SPC s g p~           | =grep= with default text                            |
+| ~SPC s k p~           | =ack=                                               |
+| ~SPC s k P~           | =ack= with default text                             |
+| ~SPC s t p~           | =pt=                                                |
+| ~SPC s t P~           | =pt= with default text                              |
+
+*Hint*: It is also possible to search in a project without needing to open a
+file beforehand. To do so use ~SPC p p~ and then ~C-s~ on a given project to
+directly search into it like with ~SPC s p~.
+
+**** Searching the web
+| Key Binding | Description                                                          |
+|-------------+----------------------------------------------------------------------|
+| ~SPC s w g~ | Get Google suggestions in emacs. Opens Google results in Browser.    |
+| ~SPC s w w~ | Get Wikipedia suggestions in emacs. Opens Wikipedia page in Browser. |
+**** Searching in kill ring
+| ~SPC r y~ | search from kill ring |
+
+*** Semantic
+    | ~SPC s j~                            | list all the symbols of a buffer          |
+    | Mark a region of code then ~SPC m r~ | Extract code to new function              |
+*** Spacemacs-editing
+| ~SPC v~              | Expand region                             |
+| ~SPC v (repeat v) /~ | Expand region and search in project       |
+| ~SPC v (repeat v) f~ | Expand region and search in file          |
+| ~SPC v (repeat v) b~ | Expand region and search in opened buffer |
+
+*** Syntax check
+| ~SPC e l | display a list of all the errors. RET to move to error |
+
+*** Theme
+#+BEGIN_SRC emacs-lisp
+(setq-default dotspacemacs-themes '(spacemacs-light leuven zenburn))
+#+END_SRC
+
+| Key Binding | Description                                           |
+|-------------+-------------------------------------------------------|
+| ~SPC T n~   | switch to next theme listed in =dotspacemacs-themes=. |
+| ~SPC T s~   | select a theme using a =helm= buffer.                 |
+
+*** Markdown
+**** Indentation
+
+| Key Binding | Description   |
+|-------------+---------------|
+| ~SPC m \>~  | indent region |
+| ~SPC m \<~  | exdent region |
+
+**** Element insertion
+
+| Key Binding | Description                                                       |
+| ~SPC m x C~ | make region code or insert code (Github Flavored Markdown format) |
+   
+** Help
+| ~SPC ?     | Show keybindings     |
+| ~SPC f e h | Discovery all layers |
+** Theme
+*** spacemacs-dark
+    Customize =dotspacemacs/user-init= in =.spacemacs=  
+    https://github.com/nashamri/spacemacs-theme
+*** Theming
+**** Change vertical border color
+     #+BEGIN_SRC elisp
+     (defun dotspacemacs/user-init ()
+     (setq-default
+     theming-modifications
+     '((spacemacs-dark (vertical-border :foreground "#ffffff"))))
+     )
+     #+END_SRC
+     
+** Troubleshoot
+*** Enable layer cscope but 'SPC m' is undefined
+    - Root Cause: It might be cscope doesn't enable in c-mode/cc-mode
+    - Solution: Add layer 'c-c++' in .spacemacs
+*** In normal mode, use C-e end of line
+    #+BEGIN_SRC elisp
+    (define-key evil-normal-state-map "\C-e" 'evil-end-of-line)
+    (define-key evil-visual-state-map "\C-e" 'evil-end-of-line)
+    (define-key evil-motion-state-map "\C-e" 'evil-end-of-line)
+    (define-key evil-replace-state-map "\C-e" 'evil-end-of-line)
+    (define-key evil-evilified-state-map "\C-e" 'evil-end-of-line)
+    #+END_SRC
+*** Disable Mouse mode
+**** Make copy/paste working with the mouse in X11 terminals?
+It is possible to disable the mouse support in X11 terminals in order to
+enable copying/pasting with the mouse. You need to add this line to your
+=dotspacemacs/user-config=:
+
+#+begin_src emacs-lisp
+(xterm-mouse-mode -1)
+#+end_src
+*** Disable highlight current line mode in term mode
+    - spacemacs commit ID a8bd6dc * Disable global-hl-line-mode in shell-like buffers
+*** magit log/commit vertical line alignment mess up
+    Root cause: The author name too long to abbreivate whit "..."
+    The "..." is half font size
+*** Strange character in powerline
+    1. Install powerline fonts
+      - https://github.com/powerline/fonts
+      - Ubuntu installed fonts in =~/.local/share/fontsc=
+    2. Disable separator in =dotspacemacs=
+#+begin_src elisp
+(defun dotspacemacs/user-config () (setq powerline-default-separator 'nil))
+#+end_src
+
+    Maybe utf8 unicode imcomplete. The master branch is ok. develop branch will
+    have this issue.
+*** Cscope binding key to =C-c ss= etc.
+    - Solution: Edit =~/.emacs.d/layers/+tags/cscope/packages.el=
+      commit: 7a0b49e * nonnn-develop cscope: Add prefix 'C-c s' series keybindings
+*** List all functions name in file
+*** =SPC h SPC= or =SPC h l= layers documents will disappear(only in develop branch)  
+* Troubleshoot
+** How to get major mode of current buffer
+   | M-: | (message "%s" major-mode) | Get major mode string |
+** Using Org-mode, in ubuntu, alt-shift-up is trapped by initial window picker
+*** Solution : Configure shortcut by compizconfig-settings-manager
+    1. sudo apt-get install compizconfig-settings-manager
+    2. Dash Home -> CompizConfig Settings Manager-> Scale(icon) under Windows Management Category ->
+       -> Bindings(tab) -> Initiate Windows Picker -> change to <Shift><Super>Up
+** Change coding system and refresh to current buffer
+   | revert-buffer-with-coding-system | Visit the current buffer's file again using coding system |
+   | Example: Simplified Chinese      | revert-buffer-with-coding-system gb2312                   |
+** Octave hangs by plotting with gnuplot
+*** Please refer to "" in octave.org
+** lambda become Geek symbol
+   | M-x prettify-symbols-mode | Toggle Prettify Symbols mode. |
+
+** Symbol's value as variable is void: fringe-mode
+   - Solution: build emacs binary with X (don't add option --with-no-x)
+** emacs hung up or stuck when startup or stop
+   - Root Cause: Maybe exist emacs server stucks. 
+   - Solution: Kill all emacs processes.
