@@ -1,0 +1,86 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t c:nil
+#+OPTIONS: creator:nil d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t
+#+OPTIONS: num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t timestamp:t
+#+OPTIONS: title:t toc:t todo:t |:t
+#+TITLE: Spacemacs
+#+DATE: <2016-08-15 Mon>
+#+AUTHOR: Sherman Hsu 
+#+EMAIL: edunonnn@gmail.com
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.4.1 (Org mode 8.3.5)
+#+startup: beamer
+#+LaTex_CLASS: beamer
+#+LaTex_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 3
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+
+* Introduction
+** Emacs/Spacemacs
+*** Emacs vs. Vim
+ The Holy war
+
+ - Speed
+ - Flexibility
+ - Keybinging Portability 
+ [[file:./learning-curve.png]]
+
+*** Evil
+ No more fighting!
+
+ *Emacs + Vim = Evil*
+
+ - Vim Key binding
+ - Using over 20,000+ Emacs packages
+
+*** Configurations
+ =~/.emacs.d= customize Emacs configurations to your style
+ Standing on the shoulder of giants
+ - Spacemacs
+ - prelude
+ - purcell
+
+*** Why Spacemacs
+ 1. Great documentation
+ 2. Beautiful GUI
+ 3. Excellent ergonomics: =SPC= or =Alt-m=
+ 4. Mnemonic key bindings: =SPC b= for buffer, =SPC f= for file
+ 5. Hundreds of ready-to-use packages 
+ 6. Organized configuration layers
+ 
+*** Getting Help
+- Where is my settings
+  - =SPC f e d=: =~/.spacemacs= Personal configurations
+  - =~/.emacs.d/= : Spacemacs
+  - =~/.emacs.d/elpa=: Installed packages
+- =SPC h SPC=: Help Anything
+- =SPC h d m= or =C-h m=: Mode
+- =SPC ?=, =SPC h d k= or =C-h k=: Key Bindings
+- =SPC h d f= or =C-h f=: Functions
+- Advance: Elisp
+** Installation
+*** Install Spacemacs
+#+begin_src shell :eval no
+cd ~
+git clone https://github.com/edunonnn/nonnn-cfg.git
+git clone https://github.com/syl20bnr/spacemacs -b develop
+ln -s nonnn-cfg/.spacemacs.develop ~/.spacemacs
+ln -s spacemacs ~/.emacs.d
+# NOTE:
+# Please rename your ~/.emacs.d if it already exist
+# Emacs Tips in ~/nonnn-cfg/org/emacs.org
+#+end_src
+* Demo
+* Next
+** todo/Issue
+*** Todo
+- Tuning terminal mode ex. M-D delete word
+- cscope find symbol in helm-cscope mode
+- More and more...
+*** Issue
+- =SPC h SPC= or =SPC h l= layers documents will disappear(only in develop branch)
+- magit log/commit at left vertical line alignment might mess up
+- semantic will parse fail
