@@ -319,6 +319,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (custom-set-variables '(helm-scroll-amount 1))
   ;; cscope
   (advice-add 'spacemacs/setup-helm-cscope :after #'dotspacemacs/add-hook-cscope-mode-hook)
+  ;; Git
+  (custom-set-variables '(magit-diff-refine-hunk t))
   )
 
 (defun dotspacemacs/user-config ()
