@@ -1,12 +1,12 @@
 # my alias
 
 # editor alias
-alias 'nemacs'='emacsclient --alternate-editor="" -nw'
+alias 'em'='emacsclient --alternate-editor="" -t'
 
 # git alias
 alias 'gd'='git diff --color'
-alias 'gl'='git log --color --name-only --decorate'
-alias 'glp'='git log --pretty=format:'%h:%s:%d' --topo-order --graph'
+alias 'glg'='git log --color --name-only --decorate'
+alias 'glog'='git log --pretty=format:'%h:%s:%d' --topo-order --graph'
 alias 'gst'='git status'
 alias 'gmerge'='git merge --no-ff'
 
