@@ -44,6 +44,7 @@ values."
      markdown
      org
      (shell :variables
+            shell-default-shell 'multi-term
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
@@ -371,6 +372,14 @@ you should place your code here."
        (bind-key "C-c s=" 'helm-cscope-find-assignments-to-this-symbol helm-cscope-mode-map)
        (bind-key "C-c su" 'helm-cscope-pop-mark helm-cscope-mode-map)
        (bind-key "C-c sI" 'cscope-index-files helm-cscope-mode-map)))
+  ;; Terminal
+  (setq term-unbind-key-list '("C-x" "C-h"))
+  (custom-set-variables
+   '(term-bind-key-alist
+     (quote (("C-c C-c" . term-interrupt-subjob)
+             ("C-<right>" . term-send-forward-word)
+             ("C-<left>" . term-send-backward-word)
+             ("M-d" . term-send-forward-kill-word)))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
