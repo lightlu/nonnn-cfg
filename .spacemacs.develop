@@ -321,6 +321,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (advice-add 'spacemacs/setup-helm-cscope :after #'dotspacemacs/add-hook-cscope-mode-hook)
   ;; Git
   (custom-set-variables '(magit-diff-refine-hunk t))
+  ;; Shell-scripts
+  (add-hook 'sh-mode-hook
+            (lambda()
+              (setq sh-basic-offset 8)
+              (setq sh-indentation 8)
+              (setq tab-width 8)
+              (setq indent-tabs-mode t)))
   )
 
 (defun dotspacemacs/user-config ()
