@@ -388,6 +388,12 @@ you should place your code here."
              ("C-<right>" . term-send-forward-word)
              ("C-<left>" . term-send-backward-word)
              ("M-d" . term-send-forward-kill-word)))))
+  (with-eval-after-load "term"
+    (add-hook 'term-mode-hook
+              (lambda()
+                (add-hook 'evil-hybrid-state-entry-hook 'term-char-mode nil 'make-it-local)
+                (add-hook 'evil-normal-state-entry-hook 'term-line-mode nil 'make-it-local)))
+    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
