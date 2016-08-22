@@ -313,6 +313,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
               (setq tab-width 8)))
   ;; Shell/Term
   (custom-set-variables
+   '(multi-term-program "/bin/bash")
    '(term-buffer-maximum-size 10240))
   ;; Helm
   ;; Scrolling line by line
