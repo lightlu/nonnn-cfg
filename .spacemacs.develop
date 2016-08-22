@@ -328,7 +328,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
               (setq sh-indentation 8)
               (setq tab-width 8)
               (setq indent-tabs-mode t)))
-  )
+  ;; conf-space mode
+  (add-hook 'conf-space-mode-hook
+            (lambda()
+              (setq tab-width 8)
+              (setq indent-tabs-mode t)))
+  ;; make-mode
+  (add-hook 'makefile-gmake-mode-hook
+            (lambda()
+              (setq tab-width 8)
+              (setq indent-tabs-mode t)))
+ )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
