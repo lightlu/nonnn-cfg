@@ -399,12 +399,19 @@ you should place your code here."
              ("C-<right>" . term-send-forward-word)
              ("C-<left>" . term-send-backward-word)
              ("M-d" . term-send-forward-kill-word)))))
+  (defun evil-insert-and-term-char-mode ()
+    (interactive)
+    (term-char-mode)
+    (evil-insert 1))
+  (defun evil-normal-state-and-term-line-mode ()
+    (interactive)
+    (term-line-mode)
+    (evil-normal-state))
   (with-eval-after-load "term"
     (add-hook 'term-mode-hook
               (lambda()
-                (add-hook 'evil-hybrid-state-entry-hook 'term-char-mode nil 'make-it-local)
-                (add-hook 'evil-normal-state-entry-hook 'term-line-mode nil 'make-it-local)))
-    )
+                (bind-key "i" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
+                (bind-key "<escape>" 'evil-normal-state-and-term-line-mode evil-hybrid-state-local-map))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
