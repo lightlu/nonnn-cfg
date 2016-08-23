@@ -350,6 +350,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; Disable mouse mode for copy text from mouse
   (xterm-mouse-mode -1)
+  ;; Disable escape key "fd" to normal state
+  (setq-default evil-escape-key-sequence nil)
   ;; Powerline
   (setq powerline-default-separator 'nil)
   ;; Evil
