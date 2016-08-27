@@ -443,6 +443,9 @@ you should place your code here."
    ("C-c 2 X"  . hs-hide-all)
    ("C-c 2 S"  . hs-show-all))
 
+  ;; personal short key-bindings
+  (bind-keys*
+   ("C-x c"  . ido-switch-buffer))
  )
 
 ;; Do not write anything past this comment. This is where Emacs will
