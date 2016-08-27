@@ -423,6 +423,8 @@ you should place your code here."
     (add-hook 'term-mode-hook
               (lambda()
                 (bind-key "i" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
+                (bind-key "c" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
+                (bind-key "s" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "<escape>" 'evil-normal-state-and-term-line-mode evil-hybrid-state-local-map))))
   (use-package hideshow-org
     :commands hs-org/minor-mode
