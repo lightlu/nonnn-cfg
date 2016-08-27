@@ -430,6 +430,17 @@ you should place your code here."
     (add-hook 'prog-mode-hook 'hs-org/minor-mode)
     :bind (("C-c h" . hs-org/minor-mode)))
   (add-hook 'prog-mode-hook 'hide-ifdef-mode)
+
+  ;;hide-show
+  ;;(bind-keys* ("<TAB>" . (lambda() (interactive) (hs-org/hideshow))))
+  (bind-keys*
+   ("C-c 1 x"  . hide-ifdef-block)
+   ("C-c 1 s"  . show-ifdef-block)
+   ("C-c 2 x"  . hs-hide-block)
+   ("C-c 2 s"  . hs-show-block)
+   ("C-c 2 X"  . hs-hide-all)
+   ("C-c 2 S"  . hs-show-all))
+
  )
 
 ;; Do not write anything past this comment. This is where Emacs will
