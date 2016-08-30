@@ -412,10 +412,13 @@ you should place your code here."
              ("C-<left>" . term-send-backward-word)
              ("M-d" . term-send-forward-kill-word)))))
   (defun evil-insert-and-term-char-mode ()
+    "Switch to evil insert mode and term char mode at the same time"
     (interactive)
     (term-char-mode)
     (evil-insert 1))
   (defun evil-normal-state-and-term-line-mode ()
+    "Switch to evil normal mode and term line mode at the same time.
+It allows copy/navigate term buffer content as normal buffer"
     (interactive)
     (term-line-mode)
     (evil-normal-state))
