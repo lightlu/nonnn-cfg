@@ -428,6 +428,9 @@ It allows copy/navigate term buffer content as normal buffer"
               (lambda()
                 (setq-local evil-move-cursor-back nil)
                 (bind-key "i" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
+                (bind-key "c" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
+                (bind-key "s" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
+                (bind-key "a" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "<escape>" 'evil-normal-state-and-term-line-mode evil-hybrid-state-local-map))))
   )
 
