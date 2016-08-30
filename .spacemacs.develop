@@ -426,6 +426,7 @@ It allows copy/navigate term buffer content as normal buffer"
   (with-eval-after-load "term"
     (add-hook 'term-mode-hook
               (lambda()
+                (setq-local evil-move-cursor-back nil)
                 (bind-key "i" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "<escape>" 'evil-normal-state-and-term-line-mode evil-hybrid-state-local-map))))
   )
