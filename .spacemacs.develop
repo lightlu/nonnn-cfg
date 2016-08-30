@@ -408,6 +408,7 @@ you should place your code here."
   (custom-set-variables
    '(term-bind-key-alist
      (quote (("C-c C-c" . term-interrupt-subjob)
+             ("C-c C-y" . term-paste)
              ("C-<right>" . term-send-forward-word)
              ("C-<left>" . term-send-backward-word)
              ("M-d" . term-send-forward-kill-word)))))
