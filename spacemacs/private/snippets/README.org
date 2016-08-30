@@ -1,0 +1,8 @@
+# Private directory for Yasnippets snippets
+
+To use the snippets in this directory, you need to copy or create symbolic link to
+your =.emacs.d/private/snippets=
+
+#+BEGIN_SRC sh
+ln -s `pwd`/c-mode ~/.emacs.d/private/snippets/c-mode
+#+END_SRC
