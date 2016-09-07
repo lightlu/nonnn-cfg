@@ -57,6 +57,8 @@ values."
      ;; themes-megapack
      theming
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     ;; Private layers
+     editing-utils
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
