@@ -57,6 +57,8 @@ values."
      ;; themes-megapack
      theming
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     ;; Private layers
+     personal
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -432,11 +434,6 @@ It allows copy/navigate term buffer content as normal buffer"
                 (bind-key "s" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "a" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "<escape>" 'evil-normal-state-and-term-line-mode evil-hybrid-state-local-map))))
-  (use-package hideshow-org
-    :commands hs-org/minor-mode
-    :init
-    (add-hook 'prog-mode-hook 'hs-org/minor-mode)
-    :bind (("C-c h" . hs-org/minor-mode)))
   (add-hook 'prog-mode-hook 'hide-ifdef-mode)
 
   ;;hide-show
