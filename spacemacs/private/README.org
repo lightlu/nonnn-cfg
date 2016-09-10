@@ -1,0 +1,15 @@
+# Private directory for layers and yasnippets snippets
+
+1. Symlink layers and snippets to your =.emacs.d=
+To use the layers and snippets in this directory, you need to copy or create relative symbolic link to
+your =.emacs.d/private/=
+
+For example:
+#+BEGIN_SRC sh
+ln -s `pwd`/editing-utils ~/.emacs.d/private/editing-utils
+ln -s `pwd`/snippet/c-mode ~/.emacs.d/privatex/snippets/c-mode
+#+END_SRC
+
+2. Don't forget to enable layers in your =~/.spacemacs=
+
+Add <layer> in =dotspacemacs/layers= in =~/.spacemacs=
