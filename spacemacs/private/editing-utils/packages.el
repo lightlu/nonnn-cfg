@@ -67,7 +67,11 @@ Each entry is either:
   (use-package xclip
     :defer t
     :init
-    (progn
-      (xclip-mode 1))))
+    (when (or
+           (and (eq system-type 'darwin)
+                (executable-find "pbcopy")
+                t)
+           (executable-find "xclip"))
+    (xclip-mode 1))))
 
 ;;; packages.el ends here
