@@ -58,7 +58,7 @@ values."
      theming
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      ;; Private layers
-     editing-util
+     editing-utils
      personal
      )
    ;; List of additional packages that will be installed without being
