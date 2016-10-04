@@ -450,7 +450,18 @@ It allows copy/navigate term buffer content as normal buffer"
   ;; personal short key-bindings
   (bind-keys*
    ("C-x c"  . ido-switch-buffer))
- )
+
+  ;; Enable hs mode for XML folding
+  (with-eval-after-load "nxml-mode"
+    (add-to-list 'hs-special-modes-alist
+                 (list 'nxml-mode
+                       "<!--\\|<[^/>]*[^/]>"
+                       "-->\\|</[^/>]*[^/]>"
+                       "<!--"
+                       'nxml-forward-element
+                       nil))
+    (add-hook 'nxml-mode-hook 'hs-minor-mode))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
