@@ -434,6 +434,16 @@ It allows copy/navigate term buffer content as normal buffer"
                 (bind-key "s" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "a" 'evil-insert-and-term-char-mode evil-normal-state-local-map)
                 (bind-key "<escape>" 'evil-normal-state-and-term-line-mode evil-hybrid-state-local-map))))
+  ;; Enable hs mode for XML folding
+  (with-eval-after-load "nxml-mode"
+    (add-to-list 'hs-special-modes-alist
+                 (list 'nxml-mode
+                       "<!--\\|<[^/>]*[^/]>"
+                       "-->\\|</[^/>]*[^/]>"
+                       "<!--"
+                       'nxml-forward-element
+                       nil))
+    (add-hook 'nxml-mode-hook 'hs-minor-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
