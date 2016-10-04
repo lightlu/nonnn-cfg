@@ -460,8 +460,10 @@ It allows copy/navigate term buffer content as normal buffer"
                        "<!--"
                        'nxml-forward-element
                        nil))
-    (add-hook 'nxml-mode-hook 'hs-minor-mode))
-  )
+    (add-hook 'nxml-mode-hook
+              (lambda()
+                (hs-minor-mode 1)
+                (bind-key "TAB" 'hs-toggle-hiding evil-normal-state-local-map))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
