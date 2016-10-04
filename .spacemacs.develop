@@ -464,6 +464,6 @@ It allows copy/navigate term buffer content as normal buffer"
               (lambda()
                 (hs-minor-mode 1)
                 (bind-key "TAB" 'hs-toggle-hiding evil-normal-state-local-map))))
-
+  )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
