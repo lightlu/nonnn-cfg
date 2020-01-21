@@ -72,6 +72,6 @@ Each entry is either:
                 (executable-find "pbcopy")
                 t)
            (executable-find "xclip"))
-    (xclip-mode 1))))
+      (xclip-mode 1))))
 
 ;;; packages.el ends here
